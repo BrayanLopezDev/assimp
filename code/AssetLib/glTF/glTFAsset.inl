@@ -1231,7 +1231,10 @@ inline void AssetMetadata::Read(Document &doc) {
     }
 
     if (version.empty() || version[0] != '1') {
-        throw DeadlyImportError("GLTF: Unsupported glTF version: " + version);
+        return;
+        // fix by @MomoDeve for MxEngine project (https://github.com/asc-community/MxEngine)
+        // gltf exporter tries to parse gltf2 file and throws error. commenting this line works as a solution
+        // throw DeadlyImportError("GLTF: Unsupported glTF version: " + version);
     }
 }
 
